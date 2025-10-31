@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,6 +9,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int nDado = 1;
+
+  void shuffleDado() {
+    nDado = Random().nextInt(6) + 1;
+    print(nDado);
+    setState(() {});
+  }
 
   void aumentarDato() {
     nDado = nDado == 6 ? 1 : nDado += 1;
@@ -72,7 +80,12 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: Icon(Icons.arrow_left_rounded),
                 ),
-                ElevatedButton(onPressed: () {}, child: Icon(Icons.shuffle)),
+                ElevatedButton(
+                  onPressed: () {
+                    shuffleDado();
+                  },
+                  child: Icon(Icons.shuffle),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     aumentarDato();
