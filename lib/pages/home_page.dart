@@ -1,12 +1,34 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int nDado = 1;
+
+  void aumentarDato() {
+    if (nDado == 6) {
+      nDado = 1;
+    } else {
+      nDado += 1;
+    }
+    setState(() {});
+  }
+
+  void restarDado() {
+    if (nDado == 1) {
+      nDado = 6;
+    } else {
+      nDado -= 1;
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(title: Text("Dice App G14"), centerTitle: true),
       body: Center(
         child: Column(
@@ -31,10 +53,37 @@ class HomePage extends StatelessWidget {
                 //     .circle, //convierte el container en un circulo perfecto
               ),
               child: Image.asset(
-                "assets/images/dice1.png",
+                "assets/images/dice$nDado.png",
                 height: 200,
                 width: 200,
               ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    restarDado();
+                  },
+                  child: Icon(Icons.arrow_left_rounded),
+                ),
+                ElevatedButton(onPressed: () {}, child: Icon(Icons.shuffle)),
+                ElevatedButton(
+                  onPressed: () {
+                    aumentarDato();
+                  },
+                  child: Icon(Icons.arrow_right_rounded),
+                ),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                nDado = 6;
+                setState(() {});
+              },
+              child: Text("Cambiar a dado 6"),
             ),
           ],
         ),
