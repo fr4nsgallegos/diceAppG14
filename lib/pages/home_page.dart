@@ -9,20 +9,23 @@ class _HomePageState extends State<HomePage> {
   int nDado = 1;
 
   void aumentarDato() {
-    if (nDado == 6) {
-      nDado = 1;
-    } else {
-      nDado += 1;
-    }
+    nDado = nDado == 6 ? 1 : nDado += 1;
+
+    // if (nDado == 6) {
+    //   nDado = 1;
+    // } else {
+    //   nDado += 1;
+    // }
     setState(() {});
   }
 
   void restarDado() {
-    if (nDado == 1) {
-      nDado = 6;
-    } else {
-      nDado -= 1;
-    }
+    nDado = nDado == 1 ? 6 : nDado -= 1;
+    // if (nDado == 1) {
+    //   nDado = 6;
+    // } else {
+    //   nDado -= 1;
+    // }
     setState(() {});
   }
 
