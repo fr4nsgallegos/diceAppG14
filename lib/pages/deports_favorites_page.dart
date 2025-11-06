@@ -34,6 +34,7 @@ class DeportsFavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text("Setstate Texts App"),
@@ -44,17 +45,41 @@ class DeportsFavoritesPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("¿Cuáles son tus deportes favoritos?", style: titleStyle),
-
-            Wrap(
-              spacing: 16, //espaciado horizontal entre elementos
-              runSpacing: 5, //espaciado vertical entre filas
-              alignment: WrapAlignment.spaceAround,
-              children: [
-                for (int i = 0; i < deportList.length; i++)
-                  _buildDeportButton(deportList[i]),
-              ],
+            SizedBox(height: 16),
+            Center(
+              child: Wrap(
+                spacing: 16, //espaciado horizontal entre elementos
+                runSpacing: 5, //espaciado vertical entre filas
+                alignment: WrapAlignment.spaceAround,
+                children: [
+                  for (int i = 0; i < deportList.length; i++)
+                    _buildDeportButton(deportList[i]),
+                ],
+              ),
+            ),
+            Divider(height: 40, thickness: 2, color: Colors.black),
+            Text("Mis deportes favoritos son:", style: titleStyle),
+            SizedBox(height: 16),
+            Container(
+              padding: EdgeInsets.all(16),
+              width: screenWidth,
+              height: screenWidth / 2,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(color: Colors.black, width: 2),
+              ),
+              child: Wrap(
+                spacing: 16, //espaciado horizontal entre elementos
+                runSpacing: 5, //espaciado vertical entre filas
+                alignment: WrapAlignment.spaceAround,
+                children: [
+                  for (int i = 0; i < deportList.length; i++)
+                    _buildDeportButton(deportList[i]),
+                ],
+              ),
             ),
           ],
         ),
