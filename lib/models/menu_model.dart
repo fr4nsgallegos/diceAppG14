@@ -3,12 +3,14 @@ class MenuModel {
   double price;
   String days;
   String imageUrl;
+  bool isSelected;
 
   MenuModel({
     required this.id,
     required this.price,
     required this.days,
     required this.imageUrl,
+    required this.isSelected,
   });
 }
 
@@ -19,6 +21,7 @@ List<MenuModel> menuModelList = [
     price: 5,
     imageUrl:
         "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
+    isSelected: false,
   ),
 
   MenuModel(
@@ -27,6 +30,7 @@ List<MenuModel> menuModelList = [
     price: 7,
     imageUrl:
         "https://images.pexels.com/photos/33432683/pexels-photo-33432683.jpeg?",
+    isSelected: false,
   ),
 
   MenuModel(
@@ -35,6 +39,7 @@ List<MenuModel> menuModelList = [
     price: 6.5,
     imageUrl:
         "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg",
+    isSelected: false,
   ),
 
   MenuModel(
@@ -43,6 +48,7 @@ List<MenuModel> menuModelList = [
     price: 9,
     imageUrl:
         "https://images.pexels.com/photos/6163259/pexels-photo-6163259.jpeg",
+    isSelected: false,
   ),
   MenuModel(
     id: 5,
@@ -50,5 +56,6 @@ List<MenuModel> menuModelList = [
     price: 10,
     imageUrl:
         "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg",
+    isSelected: false,
   ),
 ];

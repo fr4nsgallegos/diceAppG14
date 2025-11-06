@@ -2,47 +2,17 @@ import 'package:diceappg14/models/menu_model.dart';
 import 'package:diceappg14/widgets/menu_card.dart';
 import 'package:flutter/material.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   MenuPage({super.key});
 
-  // final List<Map<String, dynamic>> _menuList = [
-  //   {
-  //     "id": 1,
-  //     "days": "Lun - Mar -Mie",
-  //     "price": 5,
-  //     "imageUrl":
-  //         "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
-  //   },
-  //   {
-  //     "id": 2,
-  //     "days": "Lun - Mar",
-  //     "price": 7,
-  //     "imageUrl":
-  //         "https://images.pexels.com/photos/33432683/pexels-photo-33432683.jpeg?",
-  //   },
-  //   {
-  //     "id": 3,
-  //     "days": "Jue - Vier",
-  //     "price": 6.5,
-  //     "imageUrl":
-  //         "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg",
-  //   },
-  //   {
-  //     "id": 4,
-  //     "days": "Sab",
-  //     "price": 9,
-  //     "imageUrl":
-  //         "https://images.pexels.com/photos/6163259/pexels-photo-6163259.jpeg",
-  //   },
-  //   {
-  //     "id": 5,
-  //     "days": "Dom",
-  //     "price": 10,
-  //     "imageUrl":
-  //         "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg",
-  //   },
-  // ];
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
 
+class _MenuPageState extends State<MenuPage> {
+  int? selectedMenuIndex;
+
+  // final List<Map<String, dynamic>> _menuList = [
   Widget _buildMenuCard(double screenWidth, Map<String, dynamic> menuMap) {
     return Container(
       margin: EdgeInsets.only(bottom: 8),
@@ -97,6 +67,14 @@ class MenuPage extends StatelessWidget {
     );
   }
 
+  void onMenuTap(int? index) {
+    selectedMenuIndex = index;
+    for (int i = 0; i < menuModelList.length; i++) {
+      menuModelList[i].isSelected = i == selectedMenuIndex;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -123,6 +101,8 @@ class MenuPage extends StatelessWidget {
                 (i) => MenuCard(
                   screenWidth: screenWidth,
                   menuModel: menuModelList[i],
+                  index: i,
+                  onTap: onMenuTap,
                 ),
               ),
             ),
