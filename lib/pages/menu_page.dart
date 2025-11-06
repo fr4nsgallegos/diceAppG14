@@ -1,3 +1,4 @@
+import 'package:diceappg14/widgets/menu_card.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
@@ -117,7 +118,8 @@ class MenuPage extends StatelessWidget {
             Column(
               children: List.generate(
                 _menuList.length,
-                (i) => _buildMenuCard(screenWidth, _menuList[i]),
+                (i) =>
+                    MenuCard(screenWidth: screenWidth, menuMap: _menuList[i]),
               ),
             ),
           ],
