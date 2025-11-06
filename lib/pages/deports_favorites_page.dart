@@ -22,7 +22,7 @@ class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
     );
   }
 
-  Widget _buildDeportButton(DeportModel deportModel) {
+  Widget _buildDeportButton(DeportModel deportModel, bool isBotonInferior) {
     return ElevatedButton(
       onPressed: () {
         if (!deportModel.isFavorite) {
@@ -37,14 +37,24 @@ class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
       child: Text(deportModel.nombre, style: TextStyle(fontSize: 17)),
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-        backgroundColor: deportModel.isFavorite
+        backgroundColor: isBotonInferior
+            ? Colors.white
+            : deportModel.isFavorite
             ? Colors.orangeAccent
             : Colors.white,
-        foregroundColor: deportModel.isFavorite ? Colors.white : Colors.black,
+        foregroundColor: isBotonInferior
+            ? Colors.black
+            : deportModel.isFavorite
+            ? Colors.white
+            : Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(10),
           side: BorderSide(
-            color: deportModel.isFavorite ? Colors.white : Colors.orange,
+            color: isBotonInferior
+                ? Colors.black
+                : deportModel.isFavorite
+                ? Colors.white
+                : Colors.orange,
             width: 2,
           ),
         ),
@@ -76,7 +86,7 @@ class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
                 alignment: WrapAlignment.spaceAround,
                 children: [
                   for (int i = 0; i < deportList.length; i++)
-                    _buildDeportButton(deportList[i]),
+                    _buildDeportButton(deportList[i], false),
                 ],
               ),
             ),
@@ -86,7 +96,9 @@ class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
             Container(
               padding: EdgeInsets.all(16),
               width: screenWidth,
-              height: screenWidth / 2,
+              height: favoriteDeportModelList.length == 0
+                  ? screenWidth / 2
+                  : null,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(color: Colors.black, width: 2),
@@ -97,7 +109,7 @@ class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
                 alignment: WrapAlignment.spaceAround,
                 children: [
                   for (int i = 0; i < favoriteDeportModelList.length; i++)
-                    _buildDeportButton(favoriteDeportModelList[i]),
+                    _buildDeportButton(favoriteDeportModelList[i], true),
                 ],
               ),
             ),
