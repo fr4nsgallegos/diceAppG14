@@ -1,9 +1,15 @@
+import 'package:diceappg14/models/menu_model.dart';
 import 'package:flutter/material.dart';
 
 class MenuCard extends StatelessWidget {
   double screenWidth;
-  Map<String, dynamic> menuMap;
-  MenuCard({required this.screenWidth, required this.menuMap});
+  // Map<String, dynamic> menuMap;
+  MenuModel menuModel;
+  MenuCard({
+    required this.screenWidth,
+    // required this.menuMap,
+    required this.menuModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,8 @@ class MenuCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(menuMap["imageUrl"]),
+                // image: NetworkImage(menuMap["imageUrl"]),
+                image: NetworkImage(menuModel.imageUrl),
               ),
             ),
           ),
@@ -44,13 +51,19 @@ class MenuCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Menu ${menuMap["id"]}", style: TextStyle(fontSize: 20)),
               Text(
-                menuMap["days"],
+                // "Menu ${menuMap["id"],
+                "Menu ${menuModel.id}",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                // menuMap["days"],
+                menuModel.days,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
               ),
               Text(
-                "S/. ${menuMap["price"]}",
+                // "S/. ${menuMap["price"]}",
+                "S/. ${menuModel.price}",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ],

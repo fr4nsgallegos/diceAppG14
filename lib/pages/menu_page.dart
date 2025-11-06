@@ -1,46 +1,47 @@
+import 'package:diceappg14/models/menu_model.dart';
 import 'package:diceappg14/widgets/menu_card.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
   MenuPage({super.key});
 
-  final List<Map<String, dynamic>> _menuList = [
-    {
-      "id": 1,
-      "days": "Lun - Mar -Mie",
-      "price": 5,
-      "imageUrl":
-          "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
-    },
-    {
-      "id": 2,
-      "days": "Lun - Mar",
-      "price": 7,
-      "imageUrl":
-          "https://images.pexels.com/photos/33432683/pexels-photo-33432683.jpeg?",
-    },
-    {
-      "id": 3,
-      "days": "Jue - Vier",
-      "price": 6.5,
-      "imageUrl":
-          "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg",
-    },
-    {
-      "id": 4,
-      "days": "Sab",
-      "price": 9,
-      "imageUrl":
-          "https://images.pexels.com/photos/6163259/pexels-photo-6163259.jpeg",
-    },
-    {
-      "id": 5,
-      "days": "Dom",
-      "price": 10,
-      "imageUrl":
-          "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg",
-    },
-  ];
+  // final List<Map<String, dynamic>> _menuList = [
+  //   {
+  //     "id": 1,
+  //     "days": "Lun - Mar -Mie",
+  //     "price": 5,
+  //     "imageUrl":
+  //         "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
+  //   },
+  //   {
+  //     "id": 2,
+  //     "days": "Lun - Mar",
+  //     "price": 7,
+  //     "imageUrl":
+  //         "https://images.pexels.com/photos/33432683/pexels-photo-33432683.jpeg?",
+  //   },
+  //   {
+  //     "id": 3,
+  //     "days": "Jue - Vier",
+  //     "price": 6.5,
+  //     "imageUrl":
+  //         "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg",
+  //   },
+  //   {
+  //     "id": 4,
+  //     "days": "Sab",
+  //     "price": 9,
+  //     "imageUrl":
+  //         "https://images.pexels.com/photos/6163259/pexels-photo-6163259.jpeg",
+  //   },
+  //   {
+  //     "id": 5,
+  //     "days": "Dom",
+  //     "price": 10,
+  //     "imageUrl":
+  //         "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg",
+  //   },
+  // ];
 
   Widget _buildMenuCard(double screenWidth, Map<String, dynamic> menuMap) {
     return Container(
@@ -117,9 +118,12 @@ class MenuPage extends StatelessWidget {
             ),
             Column(
               children: List.generate(
-                _menuList.length,
-                (i) =>
-                    MenuCard(screenWidth: screenWidth, menuMap: _menuList[i]),
+                // _menuList.length,
+                menuModelList.length,
+                (i) => MenuCard(
+                  screenWidth: screenWidth,
+                  menuModel: menuModelList[i],
+                ),
               ),
             ),
           ],
