@@ -1,8 +1,14 @@
 import 'package:diceappg14/models/deport_model.dart';
 import 'package:flutter/material.dart';
 
-class DeportsFavoritesPage extends StatelessWidget {
+class DeportsFavoritesPage extends StatefulWidget {
+  @override
+  State<DeportsFavoritesPage> createState() => _DeportsFavoritesPageState();
+}
+
+class _DeportsFavoritesPageState extends State<DeportsFavoritesPage> {
   TextStyle titleStyle = TextStyle(fontSize: 23, fontWeight: FontWeight.bold);
+  List<DeportModel> favoriteDeportModelList = [];
 
   Widget _buildDeportButtonContainer() {
     return Container(
@@ -18,15 +24,29 @@ class DeportsFavoritesPage extends StatelessWidget {
 
   Widget _buildDeportButton(DeportModel deportModel) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        if (!deportModel.isFavorite) {
+          deportModel.isFavorite = true;
+          favoriteDeportModelList.add(deportModel);
+        } else {
+          deportModel.isFavorite = false;
+          favoriteDeportModelList.remove(deportModel);
+        }
+        setState(() {});
+      },
       child: Text(deportModel.nombre, style: TextStyle(fontSize: 17)),
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: deportModel.isFavorite
+            ? Colors.orangeAccent
+            : Colors.white,
+        foregroundColor: deportModel.isFavorite ? Colors.white : Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(10),
-          side: BorderSide(color: Colors.orange, width: 2),
+          side: BorderSide(
+            color: deportModel.isFavorite ? Colors.white : Colors.orange,
+            width: 2,
+          ),
         ),
       ),
     );
@@ -76,8 +96,8 @@ class DeportsFavoritesPage extends StatelessWidget {
                 runSpacing: 5, //espaciado vertical entre filas
                 alignment: WrapAlignment.spaceAround,
                 children: [
-                  for (int i = 0; i < deportList.length; i++)
-                    _buildDeportButton(deportList[i]),
+                  for (int i = 0; i < favoriteDeportModelList.length; i++)
+                    _buildDeportButton(favoriteDeportModelList[i]),
                 ],
               ),
             ),
