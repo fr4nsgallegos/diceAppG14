@@ -27,12 +27,32 @@ class MenuPage extends StatelessWidget {
               color: Colors.red,
               child: Row(
                 children: [
-                  Image.network(
-                    "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
+                  // PRIMERA FORMA DE PONER UNA IMAGEN CON BORDES REDONDEADOS
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(20),
+                  //   child: Image.network(
+                  //     "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
+                  //     height: screenWidth / 4,
+                  //     width: screenWidth / 4,
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
+
+                  // SEGUNDA FORMA DE PONER UNA IMAGEN CON BORDES REDONDEADOS
+                  Container(
                     height: screenWidth / 4,
                     width: screenWidth / 4,
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          "https://images.pexels.com/photos/28503598/pexels-photo-28503598.jpeg",
+                        ),
+                      ),
+                    ),
                   ),
+
                   SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
